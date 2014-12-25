@@ -23,23 +23,9 @@
         }
 
         $this.on('keydown', keydown);
-        $this.on('keypress', keypress);
-        $this.on('keyup', keyup);
-
-
-        function keypress(e){
-            //console.log('keypress', e);
-        }
-
 
         function keydown(e){
-            handleKey(e);
-            //console.log('keydown', e);
-        }
-
-
-        function keyup(e){
-            //console.log('keyup', e);
+            return handleKey(e);
         }
 
 
@@ -52,18 +38,19 @@
                 isInput = e.target.nodeName === "INPUT";
 
             // exclude cases when some text was selected
-            if (selectionLength)
+            if ( selectionLength )
                 return false;
 
             if ( options.debug ){
                 console.log( selectionStart, selectionEnd, selectionLength,  $target.val().length);
             }
 
-            // left-wize
+            // Crabby left
             if ( 
-                isInput 
-                && ( keyCode === ENTER_KC || keyCode === RIGHT_A )
-                && $target.val().length === selectionEnd
+                // enter shouldn't work on textareas
+                ( ( isInput && keyCode === ENTER_KC ) || 
+                ( keyCode === RIGHT_A ) ) &&
+                $target.val().length === selectionEnd
                ) {
                 e.preventDefault();
                 // cut from current position
@@ -71,16 +58,17 @@
                 return moveCrabby( 1, e );
             }
 
-            // right-wize
+            // Crabby right
             if (
-                ( keyCode === BACKSPACE_KC || keyCode === LEFT_A )
+                ( keyCode === BACKSPACE_KC || keyCode === LEFT_A ) &&
                 // cursor is at the beginning of the input
-                && selectionStart === 0
+                selectionStart === 0
             ) {
                 e.preventDefault();
                 return moveCrabby( -1, e );
             }
 
+            // Moving down
             if (
                 isInput &&
                 keyCode === DOWN_A
@@ -90,12 +78,32 @@
             }
 
             if (
+                !isInput &&
+                keyCode === DOWN_A &&
+                $target.val().length === selectionEnd 
+            ) {
+                e.preventDefault();
+                return moveCrabby ( 1, e );
+            }
+
+            // Moving up
+            if (
                 isInput &&
                 keyCode === UP_A
             ) {
                 e.preventDefault();
                 return moveVertically ( -1, e );
             }
+
+            if (
+                !isInput &&
+                keyCode === UP_A &&
+                selectionStart === 0
+            ) {
+                e.preventDefault();
+                return moveCrabby ( -1, e );
+            }
+
         }
 
 
@@ -120,13 +128,12 @@
                 options.focusHandler( e.target, next );
             } else {
                 $( next ).focus();
-
                 moveCursor( next, inc === 1 ? 0 : -1 );
             }
         }
 
 
-        function moveCursor ( element, cursorPosition){
+        function moveCursor ( element, cursorPosition ){
             if (cursorPosition<0)
                 cursorPosition = $( element ).val().length;
 
@@ -157,7 +164,7 @@
 
             if ( targetIndex > length-1 || targetIndex < 0 )
                 return false;
-            
+
             return $this[targetIndex];
         }
 
