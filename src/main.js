@@ -1,6 +1,8 @@
 ;(function($, window, undefined){
     'use strict';
 
+    // TODO: handle RTL
+
     var ENTER_KC     = 13,
         BACKSPACE_KC =  8,
         DELETE_KC    = 46,
@@ -103,7 +105,6 @@
                 e.preventDefault();
                 return moveCrabby ( -1, e );
             }
-
         }
 
 
@@ -113,8 +114,14 @@
             if (!next)
                 return false;
 
-            next.focus();
-            moveCursor( next, e.target.selectionStart );
+            if (typeof options.focusHandler === 'function'){
+                options.focusHandler( next, e );
+            } else {
+                $( next ).focus();
+                moveCursor( next, e.target.selectionStart );
+            }
+
+            return true;
         }
 
 
@@ -125,11 +132,13 @@
                 return false;
 
             if (typeof options.focusHandler === 'function'){
-                options.focusHandler( e.target, next );
+                options.focusHandler( next, e );
             } else {
                 $( next ).focus();
                 moveCursor( next, inc === 1 ? 0 : -1 );
             }
+
+            return true;
         }
 
 
