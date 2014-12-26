@@ -20,15 +20,15 @@
 
         // check if theres any object to handle events on
         if (length === 0)
-            return false;
+            return this;
 
         options = $.extend( {}, defaults, options );
 
-        if ( options.debug ){
+        if ( options.debug )
             console.log('$ applying `joinInputs` to ' + length + ' elements');
-        }
 
-        $this.on('keydown', keydown);
+        $this.on('keydown', keydown); 
+        return this;
 
         function keydown(e){
             return handleKey(e);
