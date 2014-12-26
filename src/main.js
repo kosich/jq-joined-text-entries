@@ -15,12 +15,16 @@
     var defaults = {};
 
     $.fn.joinInputs = function jq_fn_joinInputs (options){
-        var $this = $(this),
+        var $this = $(this).filter(':input, textarea'),
             length = $this.length;
+
+        // check if theres any object to handle events on
+        if (length === 0)
+            return false;
 
         options = $.extend( {}, defaults, options );
 
-        if( options.debug ){
+        if ( options.debug ){
             console.log('$ applying `joinInputs` to ' + length + ' elements');
         }
 
@@ -41,7 +45,7 @@
 
             // exclude cases when some text was selected
             if ( selectionLength )
-                return false;
+                return true;
 
             if ( options.debug ){
                 console.log( selectionStart, selectionEnd, selectionLength,  $target.val().length);
@@ -54,7 +58,6 @@
                 ( keyCode === RIGHT_A ) ) &&
                 $target.val().length === selectionEnd
                ) {
-                e.preventDefault();
                 // cut from current position
                 // paste to next one
                 return moveCrabby( 1, e );
@@ -66,7 +69,6 @@
                 // cursor is at the beginning of the input
                 selectionStart === 0
             ) {
-                e.preventDefault();
                 return moveCrabby( -1, e );
             }
 
@@ -75,7 +77,6 @@
                 isInput &&
                 keyCode === DOWN_A
             ) {
-                e.preventDefault();
                 return moveVertically ( 1, e );
             }
 
@@ -84,7 +85,6 @@
                 keyCode === DOWN_A &&
                 $target.val().length === selectionEnd 
             ) {
-                e.preventDefault();
                 return moveCrabby ( 1, e );
             }
 
@@ -93,7 +93,6 @@
                 isInput &&
                 keyCode === UP_A
             ) {
-                e.preventDefault();
                 return moveVertically ( -1, e );
             }
 
@@ -102,7 +101,6 @@
                 keyCode === UP_A &&
                 selectionStart === 0
             ) {
-                e.preventDefault();
                 return moveCrabby ( -1, e );
             }
         }
@@ -112,7 +110,7 @@
             var next = getInput ( inc, e );
 
             if (!next)
-                return false;
+                return true;
 
             if (typeof options.focusHandler === 'function'){
                 options.focusHandler( next, e );
@@ -121,7 +119,7 @@
                 moveCursor( next, e.target.selectionStart );
             }
 
-            return true;
+            return false;
         }
 
 
@@ -129,7 +127,7 @@
             var next = getInput ( inc, e );
 
             if (!next)
-                return false;
+                return true;
 
             if (typeof options.focusHandler === 'function'){
                 options.focusHandler( next, e );
@@ -138,7 +136,7 @@
                 moveCursor( next, inc === 1 ? 0 : -1 );
             }
 
-            return true;
+            return false;
         }
 
 

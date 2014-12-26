@@ -1,11 +1,11 @@
 ;(function($){
     $(function(){
 
-        $('#set1').children().css('border', '1px solid blue').joinInputs({
+        $('#set1').children().joinInputs({
             debug : true
         });
 
-        $('#set2').children().css('border', '1px solid green').joinInputs({
+        $('#set2').children().joinInputs({
             debug : true
         });
     });
