@@ -1,5 +1,59 @@
-input {
-    margin: 5px;
-    font-size: 24px;
+body{
+    padding: 2em 0 0;
+    margin: 0;
+    background-color: #DDD;
+
+    font-size: 18px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+#wrapper{
     display: block;
+    width: 600px;
+    margin: auto;
+
+}
+
+#wrapper input, #wrapper textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 5px auto;
+    padding: 5px;
+
+    font-size: inherit;
+    font-family: inherit;
+
+    text-shadow: 0 0 1px #DF008F;
+    color: red;
+
+    border: 1px solid transparent;
+    background-color: transparent;
+    resize: none;
+}
+
+#wrapper input:focus, #wrapper textarea:focus {
+    outline: 0 transparent;
+}
+#wrapper textarea:focus {
+    border-left-color: #5496B8;
+}
+#wrapper input:focus {
+    border-bottom-color: #5496B8;
+}
+
+#wrapper #i3{
+    display: inline-block;
+    float: left;
+    width: 420px;
+}
+#ghlink {
+    box-sizing: border-box;
+    float: right;
+    display: inline-block;
+    margin: 5px 0;
+    padding: 5px;
+    width: 180px;
+    text-align: left;
+    vertical-align:center;
 }

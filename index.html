@@ -3,16 +3,22 @@
     <head>
         <link rel='stylesheet' href='style.css' />
 
-        <script src="//code.jquery.com/jquery-2.1.3.min.js" ></script>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js" ></script>
         <script src="joinedTextEntries.min.js"></script>
         <script src="script.js" ></script>
 
     </head>
     <body>
-        <input id="i1" autofocus />
-        <input id="i2" />
-        <textarea id='ta1' ></textarea>
-        <input id="i3" />
-        <input id="i4" />
+        <div id='wrapper'>
+            <input value='try using arrows or `enter` and `backspace`' autofocus />
+            <input value='for navigation' />
+            <input value='this plugin works as follows:' />
+            <textarea rows='9' spellcheck="false">- on inputs and on textareas both left and right arrows work similar: jump to previous or to the next text entry, when cursor is at the start or at the end
+- on inputs up and down arrows work to jump among entries with attempt to save cursor position
+- on textareas up and down arrows work as left / right arrows
+- backspace and enter would work like left and right arrow (except textarea, where enter works trivial way)</textarea>
+            <input id="i3" value='suggestions and issues are welcome at'/><a id='ghlink' href='https://github.com/kosich/jq-joined-text-entries'>github</a>
+            <input value=' - k'/>
+        </div>
     </body>
 </html>
