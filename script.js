@@ -1,7 +1,7 @@
 ;(function($){
     $(function(){
 
-        $('#wrapper').children().joinInputs();
+        $('#wrapper').children().joinTextEntries();
 
     });
 })(jQuery);
