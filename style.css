@@ -45,15 +45,19 @@ body{
 #wrapper #i3{
     display: inline-block;
     float: left;
-    width: 420px;
+    width: 410px;
+    padding-right: 0;
 }
+
 #ghlink {
-    box-sizing: border-box;
-    float: right;
     display: inline-block;
+    box-sizing: border-box;
+    line-height: normal;
+    float: right;
     margin: 5px 0;
-    padding: 5px;
-    width: 180px;
+    padding: 6px;
+    width: 190px;
     text-align: left;
-    vertical-align:center;
+    color: #2593CD;
+    font-weight: bold;
 }
