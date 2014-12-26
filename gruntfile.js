@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                     beautify : true
                 },
                 files : {
-                    'joinedTextEntries.js' : [ 'src/*' ]
+                    'jquery.jointextentries.js' : [ 'src/*' ]
                 }
             },
             minify : {
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
                     sourceMap : true
                 },
                 files : {
-                    'joinedTextEntries.min.js' : [ 'joinedTextEntries.js' ]
+                    'jquery.jointextentries.min.js' : [ 'jquery.jointextentries.js' ]
                 }
             }
         },
