@@ -14,7 +14,7 @@
 
     var defaults = {};
 
-    $.fn.joinInputs = function jq_fn_joinInputs (options){
+    $.fn.joinTextEntries = function jq_fn_joinTextEntries (options){
         var $this = $(this).filter(':input, textarea'),
             length = $this.length;
 
@@ -25,7 +25,7 @@
         options = $.extend( {}, defaults, options );
 
         if ( options.debug )
-            console.log('$ applying `joinInputs` to ' + length + ' elements');
+            console.log('$ applying `joinTextEntries` to ' + length + ' elements');
 
         $this.on('keydown', keydown); 
         return this;

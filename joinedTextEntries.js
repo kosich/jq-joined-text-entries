@@ -4,13 +4,14 @@
     var ENTER_KC = 13, BACKSPACE_KC = 8, DELETE_KC = 46, //ARROWS
     DOWN_A = 40, UP_A = 38, LEFT_A = 37, RIGHT_A = 39;
     var defaults = {};
-    $.fn.joinInputs = function jq_fn_joinInputs(options) {
+    $.fn.joinTextEntries = function jq_fn_joinTextEntries(options) {
         var $this = $(this).filter(":input, textarea"), length = $this.length;
+        // check if theres any object to handle events on
+        if (length === 0) return this;
         options = $.extend({}, defaults, options);
-        if (options.debug) {
-            console.log("$ applying `joinInputs` to " + length + " elements");
-        }
+        if (options.debug) console.log("$ applying `joinTextEntries` to " + length + " elements");
         $this.on("keydown", keydown);
+        return this;
         function keydown(e) {
             return handleKey(e);
         }
