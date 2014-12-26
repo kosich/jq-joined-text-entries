@@ -12,7 +12,9 @@ $('form').find('.text-entry').joinTextEntries();
 
 Theres only one parameter available: 
 - `focusHandler :: function(HTMLElement, jQuery.Event)`. A function to handle the focus job. Will be called with two params:
+
     1 `next` -- element which should be focused
+
     2 `event` -- jQuery event, that was triggered
 
 Example with `focusHandler`, which hides *switched from* element and shows *switched to* element:
@@ -28,6 +30,6 @@ $(':input').joinTextEntries({
 }).filter(':not(:first)').hide();
 ```
 
-**NOTE**: the focus event is not triggered
+**NOTE**: there's no way currently to trigger focus event on element, unless you are using your own `focusHandler`
 
 **NOTE**: navigation is implemented only vertically (not grid or horizontal) in order how elements are stored in jQuery object
