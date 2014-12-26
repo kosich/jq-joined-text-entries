@@ -16,9 +16,10 @@
             return handleKey(e);
         }
         function handleKey(e) {
-            var keyCode = e.keyCode, $target = $(e.target), selectionStart = e.target.selectionStart, selectionEnd = e.target.selectionEnd, selectionLength = selectionEnd - selectionStart, isInput = e.target.nodeName === "INPUT";
+            var keyCode = e.keyCode, $target = $(e.target), selectionStart = e.target.selectionStart, selectionEnd = e.target.selectionEnd, selectionLength = selectionEnd - selectionStart, isInput = e.target.nodeName === "INPUT", hasModifKeys = e.shiftKey || e.altKey || e.ctrlKey || e.metaKey;
             // exclude cases when some text was selected
             if (selectionLength) return true;
+            if (hasModifKeys) return true;
             if (options.debug) {
                 console.log(selectionStart, selectionEnd, selectionLength, $target.val().length);
             }

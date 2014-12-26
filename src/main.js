@@ -41,10 +41,14 @@
                 selectionStart = e.target.selectionStart,
                 selectionEnd = e.target.selectionEnd,
                 selectionLength = selectionEnd - selectionStart,
-                isInput = e.target.nodeName === "INPUT";
+                isInput = e.target.nodeName === "INPUT",
+                hasModifKeys = e.shiftKey || e.altKey || e.ctrlKey || e.metaKey;
 
             // exclude cases when some text was selected
             if ( selectionLength )
+                return true;
+
+            if ( hasModifKeys )
                 return true;
 
             if ( options.debug ){
